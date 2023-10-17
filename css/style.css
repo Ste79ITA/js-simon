@@ -59,3 +59,8 @@ section {
   font-size: 40px;
   font-weight: bold;
 }
+
+.results {
+  color: coral;
+  font-size: 30px;
+}

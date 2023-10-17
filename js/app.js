@@ -6,6 +6,7 @@ const numbersDOMElement = document.querySelector('.number');
 
 let numbers = [];
 
+// Funzione che genera 5 numeri random, crea 5 oggetti html e li posizione nel container
 function randomNumbers() {
   containerDOMElement.innerHTML = '';
   containerDOMElement.style.display = 'flex';
@@ -20,9 +21,11 @@ function randomNumbers() {
   startButtonDOMElement.style.display = 'flex';
 }
 
+// Fa partire un timer di 30 secondi, nasconde i numeri e al termine chiede all'utente di scrivere i numeri
 function timer() {
   startButtonDOMElement.style.display = 'none';
   console.log('START 30s TIMER');
+  console.log(numbers);
 
   containerDOMElement.innerHTML = '';
 
@@ -37,7 +40,33 @@ function timer() {
   }, 1000);
   setTimeout(() => {
     containerDOMElement.innerHTML = '';
-  }, 30000);
+    userInput();
+  }, 31000);
+}
+
+// funzione che colleziona i numeri scritti dall'utente e li confronta con i numeri nell array
+
+function userInput() {
+  let userInput = [];
+  let rightNumbers = [];
+  let textNumbers = '';
+
+  while (userInput.length < 5) {
+    userInput.push(parseInt(prompt('Inserisci i 5 numeri')));
+  }
+  console.log(userInput);
+  for (let i = 0; i < 5; i++) {
+    if (numbers[i] === userInput[i]) {
+      rightNumbers.push(userInput[i]);
+    }
+  }
+  console.log(rightNumbers);
+  for (i = 0; i < rightNumbers.length; i++) {
+    textNumbers += ' ' + rightNumbers[i] + ' ';
+    console.log(textNumbers);
+  }
+
+  containerDOMElement.innerHTML += `<div class="results">Hai indovinato ${rightNumbers.length} numeri! ${textNumbers}</div>`;
 }
 
 playButtonDOMElement.addEventListener('click', randomNumbers);
